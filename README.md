@@ -10,7 +10,7 @@ Il aura comme un input FULLURL, l'url original a raccourcir.
 Comme sortie, SHORTURL, l'url crée.
 
 *** Recuperation de l'url original.
--Endpoint: /agrandir/{url}
+-Endpoint: /original?shortURL=${shortUrl}
 -Method: GET
 
 Il aura comme un input SHORTURL, l'url a retourner a l'etat original.

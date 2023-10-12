@@ -2,6 +2,8 @@ package com.notarius.urlshortenerapi.controller;
 
 import com.notarius.urlshortenerapi.model.URLMap;
 import com.notarius.urlshortenerapi.service.URLService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,8 @@ import java.util.Map;
 @RequestMapping("/api")
 @CrossOrigin(origins = "http://localhost:4200")
 public class URLController {
+
+    private static final Logger logger = LoggerFactory.getLogger(URLController.class);
 
     @Autowired
     private URLService urlService;
@@ -35,6 +39,7 @@ public class URLController {
             String fullURL = urlService.expandURL(shortURL);
             return new ResponseEntity<>(Map.of("fullURL", fullURL), HttpStatus.OK);
         } catch (IllegalArgumentException e) {
+            logger.error("Error in expandURL with url: {}", shortURL, e);
             return new ResponseEntity<>(Map.of("error", e.getMessage()), HttpStatus.NOT_FOUND);
         }
     }

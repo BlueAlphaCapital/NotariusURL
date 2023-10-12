@@ -2,6 +2,7 @@ package com.notarius.urlshortenerapi.service;
 
 import com.notarius.urlshortenerapi.model.URLMap;
 import com.notarius.urlshortenerapi.repository.URLRepository;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,9 +11,12 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Optional;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 @Service
 public class URLService {
+
+    private static final Logger logger = LoggerFactory.getLogger(URLService.class);
 
     @Autowired
     private URLRepository urlRepository;
@@ -49,6 +53,7 @@ public class URLService {
             BigInteger number = new BigInteger(1, hash);
             return number.toString(16);
         } catch (NoSuchAlgorithmException e) {
+            logger.error("Error in getHash with input: {}", input, e);
             throw new RuntimeException("Error generating hash", e);
         }
     }

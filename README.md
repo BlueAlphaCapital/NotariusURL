@@ -10,7 +10,7 @@ Il aura comme un input FULLURL, l'url original a raccourcir.
 Comme sortie, SHORTURL, l'url crée.
 
 *** Recuperation de l'url original.
--Endpoint: /agrandir/{url}
+-Endpoint: /original?shortURL=${shortUrl}
 -Method: GET
 
 Il aura comme un input SHORTURL, l'url a retourner a l'etat original.
@@ -22,5 +22,10 @@ Comme sortie, FULLURL, l'url original.
 -Method: GET
 On va recuperer toutes les urls qui ont été créées.
 
+Executer avec IntelliJ ou Eclipse.
+
 Apres si on a le temps on peut essayer l'integration avec un front rapide.
+
+Integration successfull with Angular Spa.
+https://github.com/iamalcidor/notarius-url-spa
 
